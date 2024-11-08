@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TextAnalyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <style>
+        .form-container {
+            margin: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .website-field {
+            /* display: flex; */  
+            align-items: center;
+            margin-bottom: 20px; /* Увеличенный отступ между полями */
+        }
+        .website-field label {
+            display: block;
+            margin-right: 10px; /* Увеличенный отступ между меткой и полем ввода */
+            font-size: 18px; 
+        }
+
+        .website-field button {
+            margin-left: 10px; /* Увеличенный отступ между кнопками */
+        }
+        .transparent-container-new_background {
+            margin: 20px 0; /* Добавление вертикальных отступов */
+            padding: 20px; /* Внутренний отступ */
+            background-color: rgba(255, 255, 255, 0.8); /* Фон */
+            border-radius: 10px; /* Скругление углов */
+        }
+        input[type="text"], input[type="file"] {
+            margin-right: 10px; /* Увеличенный отступ справа для полей ввода */
+        }
+        label {
+            display: block; /* Каждая метка будет занимать отдельную строку */
+            margin-bottom: 5px; /* Отступ между меткой и полем ввода */
+        }
+        input[type="text"] {
+            width: 100%; /* Поля ввода будут занимать всю доступную ширину */
+        }
+        button {
+            padding: 8px 12px;
+            font-size: 16px;
+        }
+
+        /* Новый стиль для поля 'other_option' */
+        #other_option {
+            margin-top: 10px; /* Отступ сверху */
+            padding-left: 10px; /* Отступ текста слева */
+        }
+
+        /* Изменение цвета и размера для заданных меток */
+        .highlight-label {
+            color: rgb(138, 95, 3);
+            font-size: 18px; /* Увеличенный размер шрифта */
+        }
+
+        /* Стилизация Select2 выпадающего списка */
+        .select2-container--default .select2-selection--single {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+            border: 1px solid #8d6b46;
+            height: 38px;
+            padding: 5px 10px;
+            border-radius: 0px; /* Скругление углов */
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 28px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            top: 5px;
+            right: 10px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #333 !important; /* Цвет текста в коробке выбора */
+        }
+        .select2-container--open .select2-dropdown--below {
+            background-color: rgba(255, 255, 255, 0.8); /* Задаем фон выпадающего списка */
+            color: #333; /* Цвет текста */
+        }
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            background-color: #8d6b46; /* Цвет при наведении */
+            color: white; /* Цвет текста при наведении */
+        }
+        .select2-container--default .select2-results__option {
+            background-color: rgba(255, 255, 255, 0.8); /* Фон опций */
+            color: #333; /* Цвет текста опций */
+        }
+        h3 {
+            color: rgb(138, 95, 3);
+        }
+
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+    <div class="transparent-container-new_background">
+        <h2>Введите данные для анализа</h2> <!-- Новый заголовок -->
+        <form id="mainForm" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <div class="transparent-container-new">
+                <div class="form-group">
+                    <label for="category" class="highlight-label">Название категории</label>
+                    <input type="text" id="category" name="category" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="options" class="highlight-label">Варианты анализа</label>
+                    <div class="select-container">
+                        <select id="options" name="options" onchange="handleOptionChange()">
+                            <option value="barriers">Барьеры</option>
+                            <option value="drivers">Драйверы</option>
+                            <option value="barriers_drivers">Барьеры + Драйверы</option>
+                            <option value="segmentation">Сегментация аудитории</option>
+                            <option value="situations">Ситуации потребления</option>
+                            <option value="factors">Факторы, влияющие на выбор</option>
+                            <option value="topics">Популярные тематики обсуждений</option>
+                            <option value="image_characteristics">Имиджевые характеристики</option>
+                            <option value="product_characteristics">Продуктовые характеристики</option>
+                            <option value="other">Введите ваш вариант:</option>
+                        </select>
+                    </div>
+                    <input type="text" id="other_option" name="other_option" style="display:none;" placeholder="Введите свой вариант">
+                </div>
+
+                <div id="steps">
+                    <div class="website-field" id="field1">
+                        <label for="step1">Бренд 1</label> 
+                        <input type="text" id="step1" name="steps[]">
+                        <div class="field-raw">
+                            <input type="file" id="file1" name="files[]">
+                            <span for="file1" class="file_size">Не больше 5МБ</span>
+                            </div>
+                        <button type="button" class="addButton" onclick="addStep()">+</button>
+                        <button type="button" class="removeButton" onclick="removeLastStep()">-</button>
+                    </div>
+                </div>
+
+                <button type="submit">Запуск анализа</button>
+            </div>
+        </form>
+    </div>
+    <div class="loading-overlay" id="loadingOverlay">
+        Подождите, идет анализ...
+    </div>
+
+    <!-- Подключение JavaScript файлов для Select2 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+
+        const maxSteps = 7;
+        let stepCount = 1;
+
+        function addStep() {
+            if (stepCount < maxSteps) {
+                stepCount++;
+                const newStep = document.createElement('div');
+                newStep.classList.add('website-field');
+                newStep.setAttribute('id', `field${stepCount}`);
+                newStep.innerHTML = `
+                    <label for="step${stepCount}">Бренд ${stepCount}</label>
+                    <input type="text" id="step${stepCount}" name="steps[]">
+                    <div class="field-raw">
+                        <input type="file" id="file${stepCount}" name="files[]">
+                        <span for="file${stepCount}" class="file_size">Не больше 5МБ</span>
+                    </div>
+                    <button type="button" class="addButton" onclick="addStep()">+</button>
+                    <button type="button" class="removeButton" onclick="removeLastStep()">-</button>
+                `;
+                document.getElementById('steps').appendChild(newStep);
+                updateButtons();
+            }
+        }
+
+        function removeLastStep() {
+            if (stepCount > 1) {
+                const lastStep = document.getElementById(`field${stepCount}`);
+                if (lastStep) {
+                    lastStep.remove();
+                    stepCount--;
+                }
+                updateButtons();
+            }
+        }
+
+        function updateButtons() {
+            const steps = document.querySelectorAll('.website-field');
+            steps.forEach((step, index) => {
+                const addButton = step.querySelector('.addButton');
+                const removeButton = step.querySelector('.removeButton');
+
+                // Показываем кнопку добавления (`+`) только если это не последний шаг и количество шагов меньше maxSteps
+                addButton.style.display = (index === steps.length - 1 && steps.length < maxSteps) ? 'inline-block' : 'none';
+
+                // Показываем кнопку удаления (`-`) на всех шагах, кроме первого
+                removeButton.style.display = steps.length > 1 ? 'inline-block' : 'none';
+            });
+        }
+
+        function handleOptionChange() {
+            const options = document.getElementById('options');
+            const otherOption = document.getElementById('other_option');
+            if (options.value === 'other') {
+                otherOption.style.display = 'block';
+            } else {
+                otherOption.style.display = 'none';
+            }
+        }
+
+        // Новая функция для отображения и скрытия загрузочного экрана
+        function showLoadingScreen() {
+            document.getElementById('loadingOverlay').style.display = 'block';
+        }
+
+        function hideLoadingScreen() {
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }
+
+        function validateForm() {
+            const step1 = document.getElementById('step1').value;
+            const file1 = document.getElementById('file1').value;
+            const options = document.getElementById('options').value;
+            const otherOption = document.getElementById('other_option').value;
+            const files = document.querySelectorAll('input[type="file"]');
+
+            // Проверка, заполнено ли поле "Бренд 1" и прикреплен ли файл
+            if (!step1 || !file1) {
+                alert("Пожалуйста, заполните поле 'Бренд 1' и прикрепите файл.");
+                return false;  // Отменить отправку формы
+            }
+
+            // Проверка, если выбрана опция "Введите ваш вариант", чтобы поле было заполнено
+            if (options === 'other' && !otherOption) {
+                alert("Пожалуйста, не оставляйте поле с вашим вариантом пустым.");
+                return false;  // Отменить отправку формы
+            }
+
+            // Проверка, что хотя бы один файл загружен
+            let fileAttached = false;
+            files.forEach(file => {
+                if (file.value) {
+                    fileAttached = true;
+                }
+            });
+
+            if (!fileAttached) {
+                alert("Пожалуйста, прикрепите хотя бы один файл.");
+                return false;  // Отменить отправку формы
+            }
+
+
+            showLoadingScreen();  // Отображаем загрузочный экран
+
+            return true;  // Разрешить отправку формы
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateButtons();
+            // Инициализация Select2 для стилизации выпадающего списка
+            $('#options').select2();
+        });
+    </script>
+</body>
+</html>

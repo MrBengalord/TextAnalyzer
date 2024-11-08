@@ -1,0 +1,1574 @@
+@font-face {
+  font-family: "RobotoRegular";
+  src: url("../fonts/RobotoRegular.eot");
+  src: url("../fonts/RobotoRegular.eot?#iefix") format("embedded-opentype"),
+       url("../fonts/RobotoRegular.woff") format("woff"),
+       url("../fonts/RobotoRegular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "RobotoLight";
+  src: url("../fonts/RobotoLight.eot");
+  src: url("../fonts/RobotoLight.eot?#iefix") format("embedded-opentype"),
+       url("../fonts/RobotoLight.woff") format("woff"),
+       url("../fonts/RobotoLight.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "RobotoMedium";
+  src: url("../fonts/RobotoMedium.eot");
+  src: url("../fonts/RobotoMedium.eot?#iefix") format("embedded-opentype"),
+       url("../fonts/RobotoMedium.woff") format("woff"),
+       url("../fonts/RobotoMedium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "RobotoBold";
+  src: url("../fonts/RobotoBold.eot");
+  src: url("../fonts/RobotoBold.eot?#iefix") format("embedded-opentype"),
+       url("../fonts/RobotoBold.woff") format("woff"),
+       url("../fonts/RobotoBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: #040404;
+  color: #fff;
+  position: relative;
+  background: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  padding-bottom: 100px !important;
+}
+
+
+body::before {
+  content: "";
+  position: fixed;
+  background: #040404ef url("../img/bg_2.png") top right no-repeat;
+  background-size: cover;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  z-index: -1;
+}
+@media (min-width: 1024px) {
+  body::before {
+    background-attachment: fixed;
+  }
+}
+
+a {
+  color: #8d6b46;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #8d6b46;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Raleway", sans-serif;
+}
+
+
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/**
+* Desktop Navigation 
+*/
+.navbar {
+  padding: 0;
+  margin-top: 35px;
+}
+.navbar ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  align-items: center;
+}
+.navbar li {
+  position: relative;
+}
+.navbar li + li {
+  margin-left: 50px;
+}
+.navbar a, .navbar a:focus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+  transition: 0.3s;
+}
+.navbar a i, .navbar a:focus i {
+  font-size: 12px;
+  line-height: 0;
+  margin-left: 5px;
+}
+.navbar a:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #8d6b46;
+  visibility: hidden;
+  width: 0px;
+  transition: all 0.3s ease-in-out 0s;
+}
+.navbar a:hover:before, .navbar li:hover > a:before, .navbar .active:before {
+  visibility: visible;
+  width: 25px;
+}
+.navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
+  color: #fff;
+}
+
+/**
+* Mobile Navigation 
+*/
+.mobile-nav-toggle {
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  display: none;
+  line-height: 0;
+  transition: 0.5s;
+  position: fixed;
+  right: 15px;
+  top: 15px;
+}
+
+@media (max-width: 991px) {
+  .mobile-nav-toggle {
+    display: block;
+  }
+
+  .navbar ul {
+    display: none;
+  }
+}
+.navbar-mobile {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  transition: 0.3s;
+  z-index: 999;
+  margin-top: 0;
+}
+.navbar-mobile .mobile-nav-toggle {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.navbar-mobile ul {
+  display: block;
+  position: absolute;
+  top: 55px;
+  right: 15px;
+  bottom: 45px;
+  left: 15px;
+  padding: 10px 0;
+  overflow-y: auto;
+  transition: 0.3s;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+.navbar-mobile li {
+  padding: 12px 20px;
+}
+.navbar-mobile li + li {
+  margin: 0;
+}
+.navbar-mobile a, .navbar-mobile a:focus {
+  font-size: 16px;
+  position: relative;
+}
+.btn-primary {
+  background-color: #8d6b46; /* Цвет кнопки */
+  color: whitesmoke; /* Цвет текста на кнопке */
+  border-color: #8d6b46; /* Цвет рамки кнопки */
+  transition: background-color 0.3s, border-color 0.3s, opacity 0.3s; /* Плавные переходы */
+}
+.btn-primary:hover {
+  background-color: transparent; /* Кнопка становится прозрачной при наведении */
+  color: #8d6b46; /* Цвет текста при наведении */
+  border-color: #8d6b46; /* Цвет рамки кнопки при наведении */
+}
+.btn-primary:focus, .btn-primary:active {
+  background-color: #8d6b46; /* Цвет кнопки при фокусе и активном состоянии */
+  color: whitesmoke; /* Цвет текста на кнопке при фокусе и активном состоянии */
+  border-color: #8d6b46; /* Цвет рамки кнопки при фокусе и активном состоянии */
+  box-shadow: none; /* Убираем стандартное выделение Bootstrap */
+}
+.transparent-container {
+  background-color: rgba(55, 55, 55, 0.331) !important; /* Прозрачный фон контейнера с !important */
+  padding: 15px; /* Дополнительное пространство внутри контейнера */
+  border-radius: 5px; /* Скругленные углы для более красивого вида */
+}
+.custom-input {
+  background: rgba(185, 183, 183, 0.213); /* Цвет фона для текстбоксов и инпутов */
+  color: #fff; /* Белый текст для контраста */
+  border: 0px solid rgba(185, 183, 183, 0.213); /* Граница для контраста */
+  padding: 10px; /* Поля внутри инпутов */
+  transition: background 0.3s, color 0.3s; /* Плавные переходы */
+}
+.custom-input::placeholder {
+  color: #bbb; /* Цвет плейсхолдера */
+}
+.custom-input:focus, .custom-input:active {
+  background: rgba(185, 183, 183, 0.213) !important; /* Цвет фона сохраняется */
+  color: #fff !important; /* Цвет текста сохраняется */
+  border: 0px solid rgba(185, 183, 183, 0.213); /* Граница сохраняется */
+  outline: none; /* Убираем стандартное выделение */
+}
+.custom-input:hover {
+  background: rgba(185, 183, 183, 0.213) !important; /* Цвет фона сохраняется */
+  color: #fff !important; /* Цвет текста сохраняется */
+  border: 0px solid rgba(185, 183, 183, 0.213); /* Граница сохраняется */
+}
+
+.custom-file-upload {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.custom-file-upload input[type=file] {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.custom-file-button {
+  width: 100%;
+  background-color: rgba(185, 183, 183, 0.213); /* Цвет кнопки */
+  color: #ffffff; /* Цвет текста на кнопке */
+  border: none; /* Убираем границу */
+  padding: 10px 20px; /* Поля кнопки */
+  cursor: pointer; /* Курсор pointer при наведении */
+  border-radius: 5px; /* Скругленные углы */
+  display: inline-block; /* Сохраняет ширину */
+  text-align: center; /* Центрируем текст */
+  width: auto;
+}
+.custom-file-button:hover {
+  background-color: transparent; /* Кнопка становится прозрачной при наведении */
+  color: rgba(0, 0, 0, 0); /* Цвет текста при наведении */
+  /* Граница при наведении */}
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+section {
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  top: 140px;
+  bottom: 100%;
+  opacity: 0;
+  transition: ease-in-out 0.4s;
+  z-index: 2;
+}
+section.section-show {
+  top: 100px;
+  bottom: auto;
+  opacity: 1;
+  padding-bottom: 45px;
+}
+section .container {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 30px;
+}
+@media (max-width: 768px) {
+  section {
+    top: 120px;
+  }
+  section.section-show {
+    top: 80px;
+  }
+}
+
+/* Стиль заголовка h2 в блоке с классом section-title */
+.section-title h2 {
+  font-size: 14px; /* Размер шрифта */
+  font-weight: 500; /* Толщина шрифта */
+  padding: 0; /* Внутренние отступы */
+  line-height: 1px; /* Высота строки */
+  margin: 0 0 0px 0; /* Внешние отступы (вниз 20px) */
+  letter-spacing: 2px; /* Межбуквенный интервал */
+  text-transform: uppercase; /* Текст заглавными буквами */
+  color: #aaaaaa; /* Цвет текста */
+  font-family: "Poppins", sans-serif; /* Шрифт текста */
+}
+
+/* Стиль псевдоэлемента after для заголовка h2 в блоке с классом section-title */
+.section-title h2::after {
+  content: ""; /* Содержимое псевдоэлемента */
+  width: 120px; /* Ширина линии */
+  height: 1px; /* Высота линии */
+  display: inline-block; /* Отображение в виде строчного элемента */
+  background: #8d6b46; /* Цвет линии */
+  margin: 0px 0px; /* Внешние отступы (вверх и вниз 4px, слева и справа 10px) */
+}
+.section-title p {
+  margin: 0;
+  margin: -15px 0 15px 0;
+  font-size: 36px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+}
+
+/*--------------------------------------------------------------
+# About
+--------------------------------------------------------------*/
+.about-me .content h3 {
+  font-weight: 700;
+  font-size: 26px;
+  color: #8d6b46;
+}
+.about-me .content ul {
+  list-style: none;
+  padding: 0;
+}
+.about-me .content ul li {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+.about-me .content ul strong {
+  margin-right: 10px;
+}
+.about-me .content ul i {
+  font-size: 16px;
+  margin-right: 5px;
+  color: #e1ff1e;
+  line-height: 0;
+}
+.about-me .content p:last-child {
+  margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Counts
+--------------------------------------------------------------*/
+.counts {
+  padding: 70px 0 60px;
+}
+.counts .count-box {
+  padding: 30px 30px 25px 30px;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.08);
+}
+.counts .count-box i {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px;
+  color: #8d6b46;
+  border-radius: 50px;
+  line-height: 0;
+}
+.counts .count-box span {
+  font-size: 36px;
+  display: block;
+  font-weight: 600;
+  color: #fff;
+}
+.counts .count-box p {
+  padding: 0;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+}
+
+/*--------------------------------------------------------------
+# Skills
+--------------------------------------------------------------*/
+.skills .progress {
+  height: 60px;
+  display: block;
+  background: none;
+  border-radius: 0;
+}
+.skills .progress .skill {
+  padding: 10px 0;
+  margin: 0;
+  text-transform: uppercase;
+  display: block;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+}
+.skills .progress .skill .val {
+  float: right;
+  font-style: normal;
+}
+.skills .progress-bar-wrap {
+  background: rgba(255, 255, 255, 0.2);
+}
+.skills .progress-bar {
+  width: 1px;
+  height: 10px;
+  transition: 0.9s;
+  background-color: #8d6b46;
+}
+
+/*--------------------------------------------------------------
+# Interests
+--------------------------------------------------------------*/
+.interests .icon-box {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  transition: ease-in-out 0.3s;
+}
+.interests .icon-box i {
+  font-size: 32px;
+  padding-right: 10px;
+  line-height: 1;
+}
+.interests .icon-box h3 {
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-size: 16px;
+  color: #fff;
+}
+.interests .icon-box:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/*--------------------------------------------------------------
+# Testimonials
+--------------------------------------------------------------*/
+.testimonials .testimonials-carousel, .testimonials .testimonials-slider {
+  overflow: hidden;
+}
+.testimonials .testimonial-item {
+  box-sizing: content-box;
+  min-height: 320px;
+}
+.testimonials .testimonial-item .testimonial-img {
+  width: 90px;
+  border-radius: 50%;
+  margin: -40px 0 0 40px;
+  position: relative;
+  z-index: 2;
+  border: 6px solid rgba(255, 255, 255, 0.12);
+}
+.testimonials .testimonial-item h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0 5px 45px;
+  color: #fff;
+}
+.testimonials .testimonial-item h4 {
+  font-size: 14px;
+  color: #999;
+  margin: 0 0 0 45px;
+}
+.testimonials .testimonial-item .quote-icon-left, .testimonials .testimonial-item .quote-icon-right {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 26px;
+}
+.testimonials .testimonial-item .quote-icon-left {
+  display: inline-block;
+  left: -5px;
+  position: relative;
+}
+.testimonials .testimonial-item .quote-icon-right {
+  display: inline-block;
+  right: -5px;
+  position: relative;
+  top: 10px;
+}
+.testimonials .testimonial-item p {
+  font-style: italic;
+  margin: 0 15px 0 15px;
+  padding: 20px 20px 60px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  position: relative;
+  border-radius: 6px;
+  position: relative;
+  z-index: 1;
+}
+.testimonials .swiper-pagination {
+  margin-top: 20px;
+  position: relative;
+}
+.testimonials .swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.testimonials .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #8d6b46;
+}
+
+/*--------------------------------------------------------------
+# Resume
+--------------------------------------------------------------*/
+.resume .resume-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+.resume .resume-item {
+  padding: 0 0 20px 20px;
+  margin-top: -2px;
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+.resume .resume-item h4 {
+  line-height: 18px;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+  color: #8d6b46;
+  margin-bottom: 10px;
+}
+.resume .resume-item h5 {
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 5px 15px;
+  display: inline-block;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.resume .resume-item ul {
+  padding-left: 20px;
+}
+.resume .resume-item ul li {
+  padding-bottom: 10px;
+}
+.resume .resume-item:last-child {
+  padding-bottom: 0;
+}
+.resume .resume-item::before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50px;
+  left: -9px;
+  top: 0;
+  background: #8d6b46;
+  border: 2px solid #8d6b46;
+}
+
+/*--------------------------------------------------------------
+# Services
+--------------------------------------------------------------*/
+.services .icon-box {
+  text-align: center;
+  background: rgba(204, 204, 204, 0.1);
+  padding: 80px 20px;
+  transition: all ease-in-out 0.3s;
+}
+.services .icon-box .icon {
+  margin: 0 auto;
+  width: 64px;
+  height: 64px;
+  background: #8d6b46;
+  border-radius: 5px;
+  transition: all 0.3s ease-out 0s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transform-style: preserve-3d;
+}
+.services .icon-box .icon i {
+  color: #fff;
+  font-size: 28px;
+}
+.services .icon-box .icon::before {
+  position: absolute;
+  content: "";
+  left: -8px;
+  top: -8px;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 5px;
+  transition: all 0.3s ease-out 0s;
+  transform: translateZ(-1px);
+}
+.services .icon-box h4 {
+  font-weight: 700;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+.services .icon-box h4 a {
+  color: #fff;
+}
+.services .icon-box p {
+  line-height: 24px;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+.services .icon-box:hover {
+  background: #8d6b46;
+  border-color: #8d6b46;
+}
+.services .icon-box:hover .icon {
+  background: #fff;
+}
+.services .icon-box:hover .icon i {
+  color: #8d6b46;
+}
+.services .icon-box:hover .icon::before {
+  background: #3d3d3d;
+}
+.services .icon-box:hover h4 a, .services .icon-box:hover p {
+  color: #fff;
+}
+
+/*--------------------------------------------------------------
+# Portfolio
+--------------------------------------------------------------*/
+.portfolio .portfolio-item {
+  margin-bottom: 30px;
+}
+.portfolio #portfolio-flters {
+  padding: 0;
+  margin: 0 auto 15px auto;
+  list-style: none;
+  text-align: center;
+  border-radius: 50px;
+  padding: 2px 15px;
+}
+.portfolio #portfolio-flters li {
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px 16px 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 3px 10px 3px;
+  transition: all 0.3s ease-in-out;
+  border-radius: 4px;
+}
+.portfolio #portfolio-flters li:hover, .portfolio #portfolio-flters li.filter-active {
+  background: #8d6b46;
+}
+.portfolio #portfolio-flters li:last-child {
+  margin-right: 0;
+}
+.portfolio .portfolio-wrap {
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.6);
+}
+.portfolio .portfolio-wrap::before {
+  content: "";
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  top: 30px;
+  bottom: 30px;
+  transition: all ease-in-out 0.3s;
+  z-index: 2;
+  opacity: 0;
+}
+.portfolio .portfolio-wrap .portfolio-info {
+  opacity: 100;
+  position: absolute;
+  top: 0;
+  left: 5px;
+  right: 5px;
+  bottom: 0;
+  text-align: center;
+  z-index: 3;
+  transition: all ease-in-out 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.portfolio .portfolio-wrap .portfolio-info h4 {
+  font-size: 16px;
+  color: #fff;
+  font-weight: 600;
+}
+.portfolio .portfolio-wrap .portfolio-info p {
+  color: #ffffff;
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 0;
+  margin: 0;
+}
+.portfolio .portfolio-wrap .portfolio-links {
+  text-align: center;
+  z-index: 4;
+}
+.portfolio .portfolio-wrap .portfolio-links a {
+  color: #fff;
+  margin: 0 2px;
+  font-size: 28px;
+  display: inline-block;
+  transition: 0.3s;
+}
+.portfolio .portfolio-wrap .portfolio-links a:hover {
+  color: #f4ff1e;
+}
+.portfolio .portfolio-wrap:hover::before {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 1;
+}
+.portfolio .portfolio-wrap:hover .portfolio-info {
+  opacity: 1;
+}
+.portfolio .portfolio-wrap:hover .portfolio-info::before {
+  top: 15px;
+  left: 15px;
+}
+.portfolio .portfolio-wrap:hover .portfolio-info::after {
+  bottom: 15px;
+  right: 15px;
+}
+
+/*--------------------------------------------------------------
+# Portfolio Details
+--------------------------------------------------------------*/
+.portfolio-details {
+  padding-top: 40px;
+  background: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+}
+.portfolio-details .container {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+.portfolio-details .portfolio-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.portfolio-details .portfolio-info {
+  padding-top: 45px;
+}
+.portfolio-details .portfolio-info h3 {
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.portfolio-details .portfolio-info ul {
+  list-style: none;
+  padding: 0;
+  font-size: 15px;
+}
+.portfolio-details .portfolio-info ul li + li {
+  margin-top: 10px;
+}
+.portfolio-details .portfolio-info p {
+  font-size: 15px;
+  padding: 15px 0 0 0;
+}
+@media (max-width: 992px) {
+  .portfolio-details .portfolio-info {
+    padding-top: 20px;
+  }
+}
+.portfolio-details .swiper-pagination {
+  margin-top: 20px;
+  position: relative;
+}
+.portfolio-details .swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.portfolio-details .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #8d6b46;
+}
+
+/*--------------------------------------------------------------
+# Contact
+--------------------------------------------------------------*/
+.contact .info-box {
+  color: #444444;
+  padding: 20px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+}
+.contact .info-box i.bx {
+  font-size: 24px;
+  color: #8d6b46;
+  border-radius: 50%;
+  padding: 14px;
+  float: left;
+  background: rgba(255, 255, 255, 0.1);
+}
+.contact .info-box h3 {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 700;
+  margin: 10px 0 8px 68px;
+}
+.contact .info-box p {
+  padding: 0;
+  color: #fff;
+  line-height: 24px;
+  font-size: 14px;
+  margin: 0 0 0 68px;
+}
+.contact .info-box .social-links {
+  margin: 5px 0 0 68px;
+  display: flex;
+}
+.contact .info-box .social-links a {
+  font-size: 18px;
+  display: inline-block;
+  color: #fff;
+  line-height: 1;
+  margin-right: 12px;
+  transition: 0.3s;
+}
+.contact .info-box .social-links a:hover {
+  color: #8d6b46;
+}
+.contact .eform {
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.contact .eform .sent-message {
+  display: none;
+  background: rgba(255, 255, 255, 0.08);
+  background: #8d6b46;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+}
+.contact .eform .loading {
+  display: none;
+  background: rgba(255, 255, 255, 0.08);
+  text-align: center;
+  padding: 15px;
+}
+.contact .eform .loading:before {
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px -6px 0;
+  border: 3px solid #8d6b46;
+  border-top-color: #eee;
+  -webkit-animation: animate-loading 1s linear infinite;
+  animation: animate-loading 1s linear infinite;
+}
+.contact .eform input, .contact .eform textarea {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 0;
+  transition: 0.3s;
+  color: #fff;
+}
+.contact .eform input:focus, .contact .eform textarea:focus {
+  background-color: rgba(255, 255, 255, 0.11);
+}
+.contact .eform input::-moz-placeholder, .contact .eform textarea::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.3);
+  opacity: 1;
+}
+.contact .eform input::placeholder, .contact .eform textarea::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+  opacity: 1;
+}
+.contact .eform input {
+  padding: 10px 15px;
+}
+.contact .eform textarea {
+  padding: 12px 15px;
+}
+.contact .eform button[type=submit] {
+  background: #8d6b46;
+  border: 0;
+  padding: 10px 30px;
+  color: #fff;
+  transition: 0.4s;
+  border-radius: 4px;
+}
+.contact .eform button[type=submit]:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+@-webkit-keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*--------------------------------------------------------------
+# Credits
+--------------------------------------------------------------*/
+.credits {
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  padding: 15px;
+  text-align: right;
+  font-size: 13px;
+  color: #fff;
+  z-index: 999999;
+}
+@media (max-width: 992px) {
+  .credits {
+    text-align: center;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8);
+  }
+}
+.credits a {
+  color: #8d6b46;
+  transition: 0.3s;
+}
+.credits a:hover {
+  color: #fff;
+}
+
+.navbar__buttons .nav-link {
+  background: #8d6b46;
+  border: 0;
+  padding: 10px 30px !important;
+  display: block !important;
+  color: #fff;
+  transition: 0.4s;
+  border-radius: 4px;
+}
+
+.navbar__buttons a:before {
+  display: none;
+}
+
+.navbar__buttons .nav-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.form-label {
+  font-size: 13px;
+  color: #ba8245;
+}
+
+.form-select-fake {
+  position: relative;
+  height: 41px;
+  width: 100%;
+}
+.form-select {
+    width: 100%;
+    background: rgb(52 50 47);
+    color: #fff;
+    border: 0;
+    max-height: 41px;
+    padding: 0;
+    font-size: 14px;
+    position: absolute;
+    outline: none;
+    transition: all 500ms cubic-bezier(.215, .61, .855, 1) ;
+}
+
+.form-select option {
+  border-bottom: 1px solid rgba(0,0,0, 0.2);
+  padding: 11px 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: calc(100% - 14px);
+}
+
+.form-select option:checked, .form-select option:active, .form-select option:focus {
+  background: #8d6b46 !important;
+  color: #FFF !important;
+}  
+
+.form-select:focus {
+  max-height: 200px;
+  box-shadow: none !important;
+  z-index: 10;
+  box-shadow: 5px 15px 10px rgba(0,0,0, 0.3) !important;
+}
+
+.form-select:after {
+  content: "\25BC";
+  font-family: math;
+  display: block;
+  font-size: 10px;
+  position: absolute;
+  top: 15px;
+  right: 6px;
+  color: rgba(255,255,255, 0.3);
+  transition: all .2s ease-in-out;
+}
+
+.form-select::-webkit-scrollbar {
+  -webkit-appearance: none;
+   width: 7px;
+   display: block;
+}
+
+.form-select::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: #8d6b46;
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.form-select:focus:after {
+  transform: rotate(180deg);
+}
+
+.form_checkboxes {
+  padding-top: 16px;
+}
+
+.input-checkbox {
+  width: 38px;
+  height: 20px;
+  vertical-align: middle;
+}
+
+.form-label-checkbox {
+  font-weight: 600;
+  color: #fff; 
+}
+
+.p-button {
+    background: #8d6b46;
+    border: 0;
+    padding: 10px 30px;
+    color: #fff;
+    transition: 0.4s;
+    border-radius: 0px;
+}
+
+.p-button:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.p-title {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0;
+    line-height: 1px;
+    margin: 0 0 20px 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #aaaaaa;
+    font-family: "Poppins", sans-serif;
+}
+
+.p-title:after {
+    content: "";
+    width: 120px;
+    height: 1px;
+    display: inline-block;
+    background: #8d6b46;
+    margin: 4px 10px;
+}
+
+.p-subtitle {
+  font-size: 22px;
+  font-weight: 600;
+  color: #8d6b46;
+}
+
+.p-result-text {
+  text-align: left;
+  font-size: 14px;
+}
+
+.p-result-text p {
+  padding-left: 2px;
+}
+
+.p-result-title {
+  font-weight: 600;
+}
+
+.p-result-value {
+  color: rgba(255,255,255, 0.7);
+  font-weight: 300;
+}
+
+.wordcloud-image {
+  display: flex;
+  justify-content: center; /* Центрирование изображения */
+  align-items: flex-start; /* Верхнее выравнивание */
+  background: none; /* Убираем белый фон */
+  padding: 0; /* Убираем padding */
+  margin: 0; /* Убираем margin */
+  outline: none; /* Убираем outline */
+  border: none; /* Убираем рамки */
+}
+
+.wordcloud-image img {
+  display: block; /* Отображать как блочный элемент */
+  width: 1000px;  /* Фиксируем ширину изображения */
+
+  height: auto; /* Поддержка пропорционального изменения размера */
+  margin: 0; /* Убираем внешние отступы */
+  padding: 0; /* Убираем padding */
+  outline: none; /* Убираем outline */
+  border: none; /* Убираем рамки */
+}
+
+.transparent-container-new {
+  width: 100%;
+  padding: 20px; /* Внутренние отступы */
+  border-radius: 0px; /* Скругленные углы */
+  max-width: 1000px; /* Максимальная ширина контейнера */
+  margin: 0px auto; /* Отступы сверху и снизу по 50px, центрирование контейнера по горизонтали */
+  color: #fff; /* Белый текст */
+}
+
+h1 {
+  text-align: left; /* Выравнивание текста по левому краю */
+  /* Отступ снизу 20px */
+}
+
+form {
+  display: flex; /* Включение flexbox для контейнера формы */
+  flex-direction: column; /* Выстраивание дочерних элементов формы в колонку (по вертикали) */
+}
+
+form div {
+  margin-bottom: 0px; /* Отступ снизу 10px для каждого <div> внутри формы */
+}
+
+
+label {
+  color: rgb(138, 95, 3);
+  font-size: 16px; /* Укажите размер шрифта по вашему желанию */
+  transition: color 0.3s; /* ПлWавный переход цвета */
+}
+
+label.filled {
+  color: rgb(255, 255, 255);
+}
+
+
+input[type="text"],
+
+button {
+  padding: 10px;
+  border-radius: 0px;
+  border: none;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #8d6b46;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #704c36;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.transparent-container-new_background {
+  background-color: rgba(0, 0, 0, 0.75); /* Менее прозрачный фон */
+  padding: 20px;
+  border-radius: 0px; /* Скругленные углы */
+  max-width: 1100px; /* Максимальная ширина */
+  margin: 50px auto; /* Центрирование контейнера */
+  color: #fff; /* Белый текст */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+input[type="text"],
+button {
+  padding: 10px;
+  border-radius: 0px;
+  border: none;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #8d6b46;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #704c36;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.transparent-container-new_background {
+  background-color: rgba(0, 0, 0, 0.8); /* Darker background */
+  padding: 20px;
+  border-radius: 0px;
+}
+
+.transparent-container-new {
+  padding: 20px;
+  border-radius: 0px;
+}
+
+
+input[type="text"] {
+  background-color: rgba(101, 101, 101, 0.5); /* Цвет фона с прозрачностью */
+  color: #fff; /* Цвет текста */
+  border-radius: 0px; /* Прямые углы */
+  padding: 10px; /* Внутренние отступы */
+  font-size: 16px; /* Размер шрифта */
+  width: 30%; /* Ширина */
+  box-sizing: border-box; /* Учитывать границы и внутренние отступы в ширине */
+  transition: all 0.2s ease-in; /* Плавные переходы */
+  outline: none;
+}
+
+input[type="file"] {
+  border: 2px dashed #5c462d;
+  padding: 7px;
+  border-radius: 6px;
+  transition: all 0.1s ease-in; /* Плавные переходы */
+}
+
+input[type="file"]:hover, input[type="file"]:active {
+  border: 2px dashed #8d6b46;
+  cursor: pointer;
+}
+
+input[type="text"]:hover, input[type="text"]:active {
+  background-color: rgba(101, 101, 101, 0.6);
+}
+
+
+/* Стили для заполненного поля */
+input[type="text"].filled {
+  background-color: #ffffff;
+  color: #000; /* Цвет текста для заполненного поля */
+   /* Цвет границы для заполненного поля */
+}
+
+
+
+input[type="month"] {
+  background-color: rgba(101, 101, 101, 0.5); /* Цвет фона с прозрачностью */
+  color: #fff; /* Цвет текста */
+  border: none; /* Убираем границу */
+  border-radius: 0px; /* Прямые углы */
+  padding: 10px; /* Внутренние отступы */
+  font-size: 16px; /* Размер шрифта */
+  width: 200px; /* Ширина */
+  box-sizing: border-box; /* Учитывать границы и внутренние отступы в ширине */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Плавные переходы */
+  margin-left: 0px; /* Задает отступ слева */
+  outline: none; /* Убираем обводку при фокусе */
+}
+
+/* Стили для заполненного поля */
+input[type="text"].filled,
+input[type="month"].filled {
+  background-color: #ffffff; /* Цвет фона для заполненного поля */
+  color: #000; /* Цвет текста для заполненного поля */
+}
+
+.date-group {
+  display: flex;
+  gap: 40px; /* Уменьшить расстояние между полями */
+}
+
+.date-group div {
+  flex: 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #000; /* Черный фон */
+  height: 100px; /* Высота 200px */
+  width: 100%; /* Ширина во всю страницу */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  color: #fff; /* Белый текст */
+  box-sizing: border-box;
+}
+
+.header-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height:75px; /* Высота логотипа */
+  margin-right: 20px; /* Отступ справа от логотипа */
+}
+
+.tool-name {
+  font-size: 24px; /* Размер шрифта */
+  font-weight: bold;
+  color: #fff; /* Цвет текста ссылок */
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px; /* Расстояние между ссылками */
+}
+
+.nav-links a {
+  color: #fff; /* Цвет текста ссылок */
+  text-decoration: none;
+  font-size: 18px; /* Размер шрифта ссылок */
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ccc; /* Цвет текста ссылок при наведении */
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Отступ между чекбоксом и меткой */
+  margin-bottom: 5px;
+}
+
+.checkbox-container input[type="checkbox"] {
+  vertical-align: middle;
+  margin: 0; /* Убираем стандартные отступы */
+}
+
+.checkbox-container label {
+  line-height: 1.2; /* Высота строки метки, чтобы текст был выровнен по центру */
+}
+
+.additional-checkboxes {
+  display: none;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.additional-checkboxes.show {
+  display: flex;
+  animation: fadeIn 0.5s;
+}
+
+.additional-checkboxes div {
+  flex: 1 1 30%; /* 3 столбца */
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center; /* Выравнивание по вертикали */
+  gap: 5px; /* Отступ между чекбоксом и меткой */
+}
+
+.additional-checkboxes div input[type="checkbox"] {
+  vertical-align: middle;
+  margin: 0; /* Убираем стандартные отступы */
+}
+
+.additional-checkboxes div label {
+  line-height: 1.2; /* Высота строки метки */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+.custom-checkbox-label {
+  color: rgb(138, 95, 3);
+  font-size: 14px; /* Укажите размер шрифта по вашему желанию */
+  transition: color 0.3s; /* Плавный переход цвета */
+  margin-bottom: 0px;
+  line-height: 2; /* Высота строки метки, чтобы текст был выровнен по центру */
+  display: inline-block; /* Для выравнивания текста с чекбоксом */
+  vertical-align: middle; /* Выравнивание по вертикали */
+}
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.flex-item {
+  flex: 1;
+}
+
+/* Стили для загрузочного экрана */
+.loading-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  padding-top: 20%;
+  font-size: 1.5em;
+  z-index: 9999;
+}
+
+span.select2.select2-container.select2-container--default {
+  width: 300px !important;
+  margin-bottom: 10px;
+}
+
+.website-field label {
+  font-size: 18px;
+}
+
+.select2-results__options::-webkit-scrollbar {
+  width: 8px;               /* ширина всей полосы прокрутки */
+}
+
+.select2-results__options::-webkit-scrollbar-track {
+  background: none;        /* цвет зоны отслеживания */
+}
+
+.select2-results__options::-webkit-scrollbar-thumb {
+  background-color: #8d6b46;    /* цвет бегунка */
+  border-radius: 4px;       /* округлось бегунка */
+  border: 3px solid #8d6b46;  /* отступ вокруг бегунка */
+}
+
+footer {
+  background-color: #000;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    color: #fff;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+}
+
+.footer-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.field-raw {
+  display: inline-block;
+  position: relative;
+}
+
+span.file_size {
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  bottom: -18px;
+  font-size: 12px;
+  color: #8d6b46;
+}
+
+.website-field button {
+  margin-left: 10px;
+  border-radius: 6px;
+  padding: 8px 14px;
+}
+
+.modal-content {
+  width: 600px !important;
+  max-width: 100%;
+}

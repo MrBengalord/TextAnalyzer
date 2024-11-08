@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Результат анализа</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* Добавление стиля для элементов <h3> */
+        h3 {
+            color: rgb(138, 95, 3);
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+    <div class="transparent-container-new_background">
+        <h1>Результаты анализа:</h1>
+        <div class="transparent-container-new">
+            <h3>Категория:</h3>
+            <p>{{ results.category }}</p>
+
+            <h3>Опции для анализа:</h3>
+            <p>{{ results.selected_option }}
+                {% if results.selected_option == 'other' %}
+                    ({{ results.other_option }})
+                {% endif %}
+            </p>
+
+            <h3>Выбранные бренды:</h3>
+            <ul>
+                {% for i in range(results.steps | length) %}
+                    <li>{{ results.steps[i] }} - Файл: {{ results.files[i] }}</li>
+                {% endfor %}
+            </ul>
+        
+            {% if final_filename %}
+            <h3>Финальный файл:</h3>
+            <input type="hidden" id="file-url" value="{{ url_for('download_file', filename=final_filename) }}">
+            <button type="button" onclick="downloadFile()">Скачать финальный файл</button>
+            {% endif %}
+        </div> <!-- Правильное закрытие контейнера -->
+    </div>
+
+    <script>
+        function downloadFile() {
+            const url = document.getElementById('file-url').value;
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = ''; // Атрибут download позволяет указать имя файла для сохранения, можно оставить пустым
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    </script>
+</body>
+</html>
