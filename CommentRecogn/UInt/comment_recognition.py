@@ -9,8 +9,8 @@ from flask import session, current_app
 import json
 
 
-client = OpenAI(api_key='sk-proj-')
-assistant_id = 'asst_'
+client = OpenAI(api_key='')
+assistant_id = ''
 
 def save_results_to_file(results, filename):
     output_dir = os.path.join(current_app.root_path, 'output')

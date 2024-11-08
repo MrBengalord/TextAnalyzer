@@ -8,8 +8,8 @@ import shutil
 from docx import Document
 import pypandoc
 
-client = OpenAI(api_key='sk-proj-')
-assistant_id = 'asst_'
+client = OpenAI(api_key='')
+assistant_id = ''
 ###################################################### Начало основного кода #################################################################
 
 def convert_to_txt(file_path):
