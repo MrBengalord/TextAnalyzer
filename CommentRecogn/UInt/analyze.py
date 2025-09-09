@@ -6,7 +6,6 @@ import time
 import os
 import shutil
 from docx import Document
-import pypandoc
 
 client = OpenAI(api_key='')
 assistant_id = ''
@@ -14,49 +13,45 @@ assistant_id = ''
 
 def convert_to_txt(file_path):
     if not os.path.exists(file_path):
-        return "Файл не найден. Пожалуйста, укажите корректный путь к файлу."
-    
-    try:
-        file_extension = file_path.split('.')[-1].lower()
-        if file_extension == 'xlsx':
-            df = pd.read_excel(file_path)
-            txt_file_path = file_path.replace(f".{file_extension}", ".txt")
-            df.to_csv(txt_file_path, index=False, header=True)
-            print(txt_file_path)
-            return txt_file_path
-        elif file_extension == 'csv':
-            df = pd.read_csv(file_path, encoding='cp1251', delimiter=';', on_bad_lines='skip')
-            txt_file_path = file_path.replace(f".{file_extension}", ".txt")
-            df.to_csv(txt_file_path, index=False, header=True)
-            print(txt_file_path)
-            return txt_file_path
-        elif file_extension == 'pdf':
-            # Если формат PDF, просто возвращаем оригинальный путь без конверсии
-            return file_path
-        elif file_extension == 'docx':
-            # Обработка файлов формата docx
-            txt_file_path = file_path.replace(f".{file_extension}", ".txt")
-            doc = Document(file_path)
-            with open(txt_file_path, 'w', encoding='utf-8') as txt_file:
-                for para in doc.paragraphs:
-                    txt_file.write(para.text + '\n')
-            return txt_file_path
-            
-        elif file_extension == 'doc':
-            # Обработка файлов формата doc с помощью pypandoc
-            txt_file_path = file_path.replace(f".{file_extension}", ".txt")
-            output = pypandoc.convert_file(file_path, 'plain', outputfile=txt_file_path)
-            return txt_file_path
-        else:
-            return file_path
+        return None
 
-    except Exception as e:
-        return f"Error converting file: {e}"
+    file_extension = file_path.split('.')[-1].lower()
+    if file_extension == 'xlsx':
+        df = pd.read_excel(file_path)
+        txt_file_path = file_path.replace(f".{file_extension}", ".txt")
+        df.to_csv(txt_file_path, index=False, header=True)
+        print(txt_file_path)
+        return txt_file_path
+    elif file_extension == 'csv':
+        df = pd.read_csv(file_path, encoding='cp1251', delimiter=';', on_bad_lines='skip')
+        txt_file_path = file_path.replace(f".{file_extension}", ".txt")
+        df.to_csv(txt_file_path, index=False, header=True)
+        print(txt_file_path)
+        return txt_file_path
+    elif file_extension == 'pdf':
+        # Если формат PDF, просто возвращаем оригинальный путь без конверсии
+        return file_path
+    elif file_extension == 'docx':
+        # Обработка файлов формата docx
+        txt_file_path = file_path.replace(f".{file_extension}", ".txt")
+        doc = Document(file_path)
+        with open(txt_file_path, 'w', encoding='utf-8') as txt_file:
+            for para in doc.paragraphs:
+                txt_file.write(para.text + '\n')
+        return txt_file_path
+    elif file_extension == 'doc':
+        # Формат .doc больше не поддерживается, чтобы уменьшить размер сервера
+        return None
+    else:
+        return file_path
 
 def file_convert(file_path):
     try:
         # Конвертация файла в формат .txt
         txt_file_path = convert_to_txt(file_path)
+        if txt_file_path is None:
+            print("Формат файла не поддерживается.")
+            return None
 
         # Проверка размера файла (в килобайтах)
         file_size_txt= os.path.getsize(txt_file_path) / 1024  # Перевод размера в килобайты

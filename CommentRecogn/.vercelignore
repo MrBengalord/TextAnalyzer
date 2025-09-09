@@ -1,0 +1,4 @@
+UInt/uploads
+UInt/output
+**/__pycache__/
+*.pyc
