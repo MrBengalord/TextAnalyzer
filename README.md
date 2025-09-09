@@ -31,10 +31,6 @@ In this tool I did not use env. however it would be used in prod.
 ## Деплой на Vercel
 Чтобы разместить сервис на Vercel, укажите в настройках проекта папку `CommentRecogn` как корневую. Именно она содержит файл `UInt/app.py` и `requirements.txt` для установки зависимостей.
 
-```
-
-
-
 
 ### Схема работы (Mermaid)
 ```mermaid
